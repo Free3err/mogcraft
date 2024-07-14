@@ -1,0 +1,41 @@
+.main_title {
+    margin: 75px 0;
+    font-size: 170px;
+    display: flex;
+    line-height: 100%;
+}
+
+.block_to_offer_info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrow_to_offer_info {
+    width: 117px;
+    height: 117px;
+    border-radius: 50%;
+    background: #ffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about {
+    margin: 150px 0;
+}
+
+.section_title {
+    font-size: 80px;
+    font-weight: 700;
+}
+
+.desc {
+    width: 1080px;
+}
+
+.desc_part {
+    font-size: 30px;
+    font-weight: 500;
+    margin: 30px 0;
+}

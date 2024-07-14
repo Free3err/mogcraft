@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Gilroy';
+    color: white;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: linear-gradient(to bottom right, #0062ff, #00ff91);
+    background-attachment: fixed;
+}
+
+::selection {
+    background: rgba(135, 230, 198, 0.7);
+    color: #daf0e8;
+}
+
+::-webkit-scrollbar {
+    width: 9px;
+    background-color: #daf0e8;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #b9d4ca;
+}
+
+.main_wrapper {
+    max-width: 1340px;
+    margin: 0px auto;
+}
