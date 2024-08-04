@@ -1,0 +1,42 @@
+.contacts_sections {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.links {
+    margin: 65px auto 0px;
+
+    h2 {
+        font-size: 30px;
+    }
+
+    ul {
+        list-style-type: none;
+        display: flex;
+
+        li {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            width: 234px;
+            margin: 10px 20px 10px 0px;
+            padding: 0px 58.5px ;
+
+            a {
+                border-radius: 30%;
+                transition: all 0.2s ease-in-out;
+                &:hover {
+                    transform: scale(120%);
+                }
+            }
+        }
+    }
+
+    img {
+        width: 117px;
+        height: 117px;
+        }
+}
