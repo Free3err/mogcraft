@@ -1,0 +1,35 @@
+.license_agreement {
+    max-width: 960px;
+    margin: 50px 0px;
+}
+
+.title_section {
+    margin: 0px 0px 10px;
+}
+
+.date_of_entry {
+    margin: 20px 0px;
+}
+
+.desc {
+    margin: 20px 0px;
+}
+
+h4 {
+    margin: 15px 0px 5px;
+    font-size: 20px;
+}
+
+.points,
+.subpoints {
+    margin-left: 10px;
+
+    p {
+        font-size: 18px;
+        margin: 10px 5px;
+    }
+}
+
+.desc {
+    font-size: 20px;
+}

@@ -1,0 +1,21 @@
+.smooth-transform {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.smooth-transform.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.smooth-transform {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.smooth-transform.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
