@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import Footer from "../components/footer/Footer";
 
-import "../css/licenseAgreement.css";
+import "../css/documents.css";
 
 const LicenseAgreement = () => {
     useEffect(() => {
@@ -147,7 +147,7 @@ const LicenseAgreement = () => {
                         </p>
                     </section>
                     <h4>9. Контактная информация</h4>
-                    <section className='points'>
+                    <section className='contact_section'>
                         <p>
                             Если у вас есть вопросы по поводу данного
                             Соглашения, пожалуйста, свяжитесь с нами по адресу:{" "}

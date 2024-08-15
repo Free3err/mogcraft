@@ -2,6 +2,6 @@
 
 VERSION = '1.0.0'
 
-from . import parse_owner
-from . import parse_group
+from . import owner
+from . import group
 from . import pages

@@ -33,3 +33,9 @@ h4 {
 .desc {
     font-size: 20px;
 }
+
+.contact_section {
+    margin: 20px 0px;
+    font-size: 20px;
+    font-weight: 700;
+}

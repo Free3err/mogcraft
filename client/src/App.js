@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFound";
 
 import "./css/main.css";
 import "./assets/fonts/Gilroy/style.css";
+import SmoothTransform from "./utils/smoothTransform/smoothTransform";
 
 function App() {
     return (
@@ -20,18 +21,19 @@ function App() {
             <Router>
                 <ScrollToTop />
                 <Header />
+                <SmoothTransform>
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/contacts' element={<Contacts />} />
                     <Route path='/about' element={<About />} />
-                    <Route path='/terms_of_use' element={<TermsOfUse />} />
                     <Route
                         path='/license_agreement'
                         element={<LicenseAgreement />}
                     />
-                    <Route path="/terms_of_use" element={<TermsOfUse/>} />
+                    <Route path='/terms_of_use' element={<TermsOfUse />} />
                     <Route path='/*' element={<NotFound />} />
                 </Routes>
+                </SmoothTransform>
             </Router>
         </div>
     );

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
-import SmoothTransform from "../utils/smoothTransform/smoothTransform";
+import Footer from "../components/footer/Footer";
 
 import tgLogo from "../assets/img/icons/tg_logo.svg";
 import vkLogo from "../assets/img/icons/vk_logo.svg";
@@ -16,46 +17,6 @@ const Contacts = () => {
     useEffect(() => {
         document.title = "MogCraft | Контакты";
 
-        const fetchOwnerName = async (urlPage, setName) => {
-            try {
-                const response = await fetch(
-                    "http://localhost:5000/api/parse_owner/get_name",
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({ url: urlPage }),
-                    }
-                );
-    
-                const data = await response.json();
-                setName(data.owner_name);
-            } catch (error) {
-                console.error("Ошибка:", error);
-            }
-        };
-
-        const fetchGroupName = async (urlChannel, setGroupName) => {
-            try {
-                const response = await fetch(
-                    "http://localhost:5000/api/parse_group/get_name",
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({ url: urlChannel }),
-                    }
-                );
-    
-                const data = await response.json();
-                setGroupName(data.group_name);
-            } catch (error) {
-                console.error("Ошибка:", error);
-            }
-        };
-
         fetchOwnerName("https://vk.com/keckmeme", setVkName);
         fetchOwnerName("tg://user?id=1180308963", setTelegramName);
 
@@ -63,51 +24,71 @@ const Contacts = () => {
         fetchGroupName("https://vk.com/mogcraft_project", setVkGroupName);
     }, []);
 
+    const fetchOwnerName = async (urlPage, setName) => {
+        axios
+            .get(`https://mogcraft.ru:8000/api/owner/get_name?url=${urlPage}`)
+            .then((response) => setName(response.data.owner_name));
+    };
+
+    const fetchGroupName = (urlChannel, setGroupName) => {
+        axios
+            .get(
+                `https://mogcraft.ru:8000/api/group/get_name?url=${encodeURIComponent(
+                    urlChannel
+                )}`
+            )
+            .then((response) => setGroupName(response.data.group_name));
+    };
 
     return (
         <>
-        <SmoothTransform>
-        <main>
-            <div className='main_wrapper'>
-                    <div className='contacts_sections'>
-                        <section className='social links'>
-                            <h2>Контакты проекта</h2>
-                            <ul>
-                                <li>
-                                    <a href='https://vk.com/mogcraft_project'>
-                                        <img src={vkLogo} alt='Vk Logo' />
-                                    </a>
-                                    <strong>{vkGroupName}</strong>
-                                </li>
-                                <li>
-                                    <a href='https://t.me/mogcraft'>
-                                        <img src={tgLogo} alt='Telegram Logo' />
-                                    </a>
-                                    <strong>{telegramGroupName}</strong>
-                                </li>
-                            </ul>
-                        </section>
-                        <section className='owner_social links'>
-                            <h2>Контакты владельца проекта</h2>
-                            <ul>
-                                <li>
-                                    <a href='https://vk.com/keckmeme'>
-                                        <img src={vkLogo} alt='Vk Logo' />
-                                    </a>
-                                    <strong>{vkName}</strong>
-                                </li>
-                                <li>
-                                    <a href='https://t.me/free3err'>
-                                        <img src={tgLogo} alt='Telegram Logo' />
-                                    </a>
-                                    <strong>{telegramName}</strong>
-                                </li>
-                            </ul>
-                        </section>
+                <main>
+                    <div className='main_wrapper'>
+                        <div className='contacts_sections'>
+                            <section className='social links'>
+                                <h2>Контакты проекта</h2>
+                                <ul>
+                                    <li>
+                                        <a href='https://vk.com/mogcraft_project'>
+                                            <img src={vkLogo} alt='Vk Logo' />
+                                        </a>
+                                        <strong>{vkGroupName}</strong>
+                                    </li>
+                                    <li>
+                                        <a href='https://t.me/mogcraft'>
+                                            <img
+                                                src={tgLogo}
+                                                alt='Telegram Logo'
+                                            />
+                                        </a>
+                                        <strong>{telegramGroupName}</strong>
+                                    </li>
+                                </ul>
+                            </section>
+                            <section className='owner_social links'>
+                                <h2>Контакты владельца проекта</h2>
+                                <ul>
+                                    <li>
+                                        <a href='https://vk.com/keckmeme'>
+                                            <img src={vkLogo} alt='Vk Logo' />
+                                        </a>
+                                        <strong>{vkName}</strong>
+                                    </li>
+                                    <li>
+                                        <a href='https://t.me/free3err'>
+                                            <img
+                                                src={tgLogo}
+                                                alt='Telegram Logo'
+                                            />
+                                        </a>
+                                        <strong>{telegramName}</strong>
+                                    </li>
+                                </ul>
+                            </section>
+                        </div>
                     </div>
-            </div>
-        </main>
-        </SmoothTransform>
+                </main>
+                <Footer />
         </>
     );
 };

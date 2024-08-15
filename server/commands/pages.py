@@ -2,6 +2,7 @@ import json
 import os
 
 def get_data(path):
+    print(path)
     directories_of_path = path.split('/')
 
     script_dir = os.path.dirname(__file__)

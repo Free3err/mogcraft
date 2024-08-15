@@ -1,0 +1,29 @@
+.not_found {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin: 40px auto;
+    height: 400px;
+}
+
+.not_found a {
+    margin: 25px 0px;
+    border-radius: 10px;
+}
+
+.classic_button {
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+    width: 100px;
+    color: white;
+    background: #2c5876;
+    cursor: pointer;
+    transition: 0.2s ease-out;
+
+    &:hover {
+        background: #386d90;
+    }
+}
