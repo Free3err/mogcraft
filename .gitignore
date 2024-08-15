@@ -1,0 +1,41 @@
+# dependencies
+/client/node_modules
+/client/.pnp
+/client/.pnp.js
+
+# testing
+/coverage
+
+# env
+/server/venv
+
+# production
+/client/build
+
+# other
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python
+*.pyc
+server/.env
+server/commands/__pycache__/
+
+# IDE
+.idea/
+.vscode/
+
+# macOS Finder
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Logs
+*.log
+
+# Tempp files
+*.tmp
+*.swp
+
