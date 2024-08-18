@@ -26,14 +26,14 @@ const Contacts = () => {
 
     const fetchOwnerName = async (urlPage, setName) => {
         axios
-            .get(`https://mogcraft.ru:8000/api/owner/get_name?url=${urlPage}`)
+            .get(`http://localhost:5000/api/owner/get_name?url=${urlPage}`)
             .then((response) => setName(response.data.owner_name));
     };
 
     const fetchGroupName = (urlChannel, setGroupName) => {
         axios
             .get(
-                `https://mogcraft.ru:8000/api/group/get_name?url=${encodeURIComponent(
+                `http://localhost:5000/api/group/get_name?url=${encodeURIComponent(
                     urlChannel
                 )}`
             )

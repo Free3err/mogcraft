@@ -2,6 +2,4 @@
 
 VERSION = '1.0.0'
 
-from . import owner
-from . import group
-from . import pages
+from . import database, group, owner, pages, user

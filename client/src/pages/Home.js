@@ -34,7 +34,7 @@ const Home = () => {
 
     const getNews = (setPosts) => {
         axios
-            .get("https://mogcraft.ru:8000/api/group/get_posts")
+            .get("http://localhost:5000/api/group/get_posts")
             .then((response) => {
                 setPosts(response.data.data);
             });
