@@ -1,8 +1,7 @@
 import psycopg2
 from dotenv import load_dotenv
 import os
-
-import security
+import sys
 
 
 def get_db_data():
@@ -75,7 +74,19 @@ def create_tables(connection):
 
 # methods for db
 @connect
-def create_user(connection, role, username, password):
+def create_user(connection, role: int, username: str, password: str) -> bool:
+
+    with connection.cursor() as cursor:
+        cursor.execute(
+            "INSERT INTO users (role, username, password) VALUES (%s, %s, %s)",
+            (role, username, password),
+        )
+
+    print("[INFO]: User successfully was created.")
+
+
+@connect
+def is_exist_user(connection, username: str) -> bool:
     with connection.cursor() as cursor:
 
         cursor.execute(
@@ -85,28 +96,22 @@ def create_user(connection, role, username, password):
                 FROM users
                 WHERE username = %s 
             );""",
-            (username),
+            (username,),
         )
 
-        if cursor.fetchone():
+        if cursor.fetchone()[0]:
             print('''[INFO]: User wasn't created by reason "User is exist"''')
             return False
 
-        cursor.execute(
-            "INSERT INTO users (role, username, password) VALUES (%s, %s, %s)",
-            (role, username, password),
-        )
-
-        print("[INFO]: User successfully was created.")
         return True
 
 
 @connect
-def get_user_password(connection, username):
+def get_user_password(connection, username: str) -> str:
     with connection.cursor() as cursor:
         cursor.execute(
-                """SELECT password FROM users WHERE username = %s;""", (username,)
+            """SELECT password FROM users WHERE username = %s;""", (username,)
         )
 
-        hashing_password = cursor.fetchone()[0]
-        return hashing_password
+        hashed_password = cursor.fetchone()[0]
+        return hashed_password

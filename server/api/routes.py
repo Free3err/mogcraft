@@ -4,7 +4,6 @@ import os
 import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-
 import commands
 
 
@@ -28,7 +27,7 @@ def get_name_group():
     return jsonify({"group_name": group_name}), 200
 
 
-@app.route("/api/group/get_posts", methods=["GET"])
+@app.route("/api/group/get_news", methods=["GET"])
 def get_posts_group():
     posts_array = commands.group.get_posts()
     data = {"data": posts_array}
@@ -43,7 +42,7 @@ def get_page_data():
     return jsonify({"text": data}), 200
 
 
-@app.route("/api/user/signin", methods=["POST"])
+@app.route("/api/user/sign_in", methods=["POST"])
 def sign_in():
     data = request.get_json()
 
@@ -54,4 +53,13 @@ def sign_in():
     return jsonify({"is_authorized": status}), 200
 
 
-app.run(debug=True)
+@app.route("/api/user/sign_up", methods=["POST"])
+def sign_up():
+    data = request.get_json()
+    
+    username = data["username"]
+    password = data["password"]
+    
+    status = commands.database.create_user(username=username, password=password)
+
+app.run(debug=False)

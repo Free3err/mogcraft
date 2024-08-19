@@ -12,7 +12,7 @@ def get_token(service):
         return os.getenv('TG_TOKEN')
     
 
-def get_name(url):
+def get_name(url: str) -> str:
     channel_id = url.split('/')[-1]
 
     if 'vk.com' in url:
@@ -53,7 +53,7 @@ def get_name(url):
             return 'error'
         
 
-def get_posts():
+def get_posts() -> list:
 
     token = get_token('telegram')
     api_url = f'https://api.telegram.org/bot{token}/getUpdates'

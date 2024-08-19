@@ -1,7 +1,7 @@
 import json
 import os
 
-def get_data(path):
+def get_data(path: str):
     print(path)
     directories_of_path = path.split('/')
 
