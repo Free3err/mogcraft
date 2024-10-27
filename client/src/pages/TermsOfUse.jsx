@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import Footer from "../components/footer/Footer";
+
 
 import "../css/documents.css";
 
@@ -12,7 +12,7 @@ const TermsOfUse = () => {
     return (
         <>
             <main>
-                <div className='main_wrapper'>
+                <div className='main-wrapper'>
                     <div className='terms_of_use_wrapper'>
                         <h1 className='title_section'>
                             Условия использования сайта MogCraft.ru
@@ -195,7 +195,7 @@ const TermsOfUse = () => {
                     </div>
                 </div>
             </main>
-            <Footer />
+            
         </>
     );
 };

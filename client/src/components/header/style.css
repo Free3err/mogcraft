@@ -1,60 +1,63 @@
 header {
-    transition: all 0.2s ease-in-out;
-    padding: 30px 0px;
+   transition: all 0.2s ease-in-out;
+   padding: 30px 0;
 }
 
 .header_wrapper {
-    max-width: 1340px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+   max-width: 1340px;
+   margin: 0 auto;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
 }
 
 .logo {
-    font-size: 36px;
-    margin-right: 20px;
+   font-size: 36px;
+   margin-right: 20px;
 
-    &:hover {
-        .first_logo {
-            color: rgb(0, 255, 170);
-        }
+   &:hover {
+      .first_logo {
+         color: rgb(0, 255, 170);
+      }
 
-        .second_logo {
-            color: rgb(0, 255, 255);
-        }
-    }
+      .second_logo {
+         color: rgb(0, 255, 255);
+      }
+   }
+}
+
+.first_logo,
+.second_logo {
+   color: rgb(255, 255, 255);
+   transition: all 0.25s ease-in-out;
 }
 
 .first_logo {
-    color: rgb(255, 255, 255);
-    font-weight: 700;
-    transition: all 0.25s ease-in-out;
-}
-
-.second_logo {
-    color: rgb(255, 255, 255);
-    transition: all 0.25s ease-in-out;
+   font-weight: 700;
 }
 
 a {
-    text-decoration: none;
+   text-decoration: none;
+}
+
+.ip_field {
+   position: relative;
 }
 
 .ip_field span {
-    cursor: pointer;
-    transition: all 0.2s;
+   cursor: pointer;
+   transition: all 0.2s;
 
-    &:hover {
-        color: rgb(0, 255, 170);
-    }
+   &:hover {
+      color: rgb(0, 255, 170);
+   }
 }
 
 .ip_copied_alert {
-    transition: all 0.3s ease-in-out;
-    opacity: 0;
-    font-size: 15px;
-    font-weight: 500;
-    position: absolute;
-    cursor: default;
+   transition: all 0.3s ease-in-out;
+   opacity: 0;
+   font-size: 15px;
+   font-weight: 500;
+   position: absolute;
+   cursor: default;
 }

@@ -1,48 +1,46 @@
-.about_wrapper {
-    margin-top: 40px;
+.about-container {
+   margin-top: 40px;
 }
 
-.title_about {
-    font-size: 60px;
+.about-title {
+   font-size: 60px;
 }
 
-.main_desc {
-    margin: 30px 0px;
-    max-width: 1080px;
+.description-container {
+   margin: 30px 0;
+   max-width: 1080px;
 
-    .part_main_desc {
-        margin: 5px 0px;
-        font-size: 30px;
-        font-weight: 500;
-    }
+   .description-part {
+      margin: 5px 0;
+      font-size: 30px;
+      font-weight: 500;
+   }
 }
 
-.question {
-    font-size: 150px;
+.faq-question {
+   font-size: 150px;
 }
 
-
-.answer {
-    font-size: 30px;
-    max-width: 1080px;
-    margin: 20px 0px 210px;
-    font-size: 30px;
-    font-weight: 300;
+.faq-answer {
+   font-size: 30px;
+   max-width: 1080px;
+   margin: 20px 0 210px;
+   font-weight: 300;
 }
 
-.block_to_FAQ {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 65px 0px;
+.faq-block {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: 65px 0;
 }
 
-.arrow_to_FAQ {
-    width: 117px;
-    height: 117px;
-    border-radius: 50%;
-    background: #ffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.faq-arrow {
+   width: 117px;
+   height: 117px;
+   border-radius: 50%;
+   background: #fff;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import Footer from "../components/footer/Footer";
+
 
 import "../css/documents.css";
 
@@ -11,7 +11,7 @@ const LicenseAgreement = () => {
 
     return (
         <>
-            <main className='main_wrapper'>
+            <main className='main-wrapper'>
                 <div className='license_agreement'>
                     <h1 className='title_section'>Лицензионное соглашение</h1>
                     <h3 className='date_of_entry'>
@@ -162,7 +162,7 @@ const LicenseAgreement = () => {
                     </section>
                 </div>
             </main>
-            <Footer />
+            
         </>
     );
 };

@@ -1,6 +1,7 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter, useRoutes } from "react-router-dom";
 
 import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
 
 import ScrollToTop from "./utils/scrollToTop";
 
@@ -13,29 +14,48 @@ import NotFound from "./pages/NotFound";
 
 import "./css/main.css";
 import "./assets/fonts/Gilroy/style.css";
-import SmoothTransform from "./utils/smoothTransform/smoothTransform";
 
-function App() {
+const routes = {
+    publicRoutes: [
+        {
+            path: "/",
+            element: <Home />,
+        },
+        {
+            path: "/contacts",
+            element: <Contacts />,
+        },
+        {
+            path: "/about",
+            element: <About />,
+        },
+        {
+            path: "/license_agreement",
+            element: <LicenseAgreement />,
+        },
+        {
+            path: "/terms_of_use",
+            element: <TermsOfUse />,
+        },
+        {
+            path: "/*",
+            element: <NotFound />,
+        },
+    ],
+};
+
+const Routing = () => useRoutes([...routes.publicRoutes]);
+
+const App = () => {
     return (
-        <div className='App'>
-            <Router>
-                <ScrollToTop />
+        <>
+            <BrowserRouter>
                 <Header />
-                <SmoothTransform>
-                <Routes>
-                    <Route path='/' element={<Home />} />
-                    <Route path='/contacts' element={<Contacts />} />
-                    <Route path='/about' element={<About />} />
-                    <Route
-                        path='/license_agreement'
-                        element={<LicenseAgreement />}
-                    />
-                    <Route path='/terms_of_use' element={<TermsOfUse />} />
-                    <Route path='/*' element={<NotFound />} />
-                </Routes>
-                </SmoothTransform>
-            </Router>
-        </div>
+                <ScrollToTop />
+                <Routing />
+                <Footer />
+            </BrowserRouter>
+        </>
     );
 }
 

@@ -29,16 +29,16 @@ body {
     background-color: #b9d4ca;
 }
 
-.main_wrapper {
+.main-wrapper {
     max-width: 1340px;
-    margin: 0px auto;
+    margin: 0 auto;
 }
 
-.mailto_link {
+.mailto-link {
     text-decoration: underline;
-    transition: all 0.1s ease-in;
+    transition: color 0.1s ease-in;
+}
 
-    &:hover {
-        color: rgb(216, 216, 216);
-    }
+.mailto-link:hover {
+    color: rgb(216, 216, 216);
 }

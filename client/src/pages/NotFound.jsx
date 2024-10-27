@@ -10,7 +10,7 @@ const NotFound = () => {
     return (
         <>
             <main className='section'>
-                <div className='main_wrapper'>
+                <div className='main-wrapper'>
                     <section className='not_found'>
                         <h1>По указанному адресу ничего не найдено</h1>
                         <NavLink to='/'>
