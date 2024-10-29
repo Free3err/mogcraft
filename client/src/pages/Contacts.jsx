@@ -23,16 +23,16 @@ const Contacts = () => {
    }, []);
 
    const fetchOwnerNames = async () => {
-      const response = apiService.getRequest("/pages/get_data", {
-         type: "owner_data",
+      const response = apiService.getRequest("/page/get_data", {
+         tablr: "owner",
       });
       setVkName(response.data ? response.data[0] : "Telegram");
       setTelegramName(response.data ? response.data[1] : "Vk");
    };
 
    const fetchGroupsNames = async () => {
-      const response = apiService.getRequest("/pages/get_data", {
-         type: "groups_data",
+      const response = apiService.getRequest("/page/get_data", {
+         table: "groups",
       });
       setTelegramGroupName(response.data ? response.data[0] : "Telegram");
       setVkGroupName(response.data ? response.data[1] : "Vk");

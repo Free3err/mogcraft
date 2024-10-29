@@ -2,6 +2,8 @@ import { NavLink } from "react-router-dom";
 
 import NavBar from "../navbar/NavBar";
 
+import SERVER_VERSION from '../../constants'
+
 import "./style.css";
 
 const Header = () => {
@@ -30,7 +32,7 @@ const Header = () => {
                   {" "}
                   mogcraft.ru{" "}
                </span>
-               (1.20.6)
+               ({SERVER_VERSION ? SERVER_VERSION : "нет данных"})
                <p className="ip_copied_alert">Айпи скопирован!</p>
             </h2>
          </div>

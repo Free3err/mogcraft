@@ -1,7 +1,25 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
+from settings.constants import API_URL, DB as db
 
-bp = Blueprint('pages_route', __name__)
+MAIN_URL = f'{API_URL}/page'
 
-@bp.route('/api/', methods=['GET'])
-async def get_users():
-    return "hello world"
+bp = Blueprint('page_route', __name__)
+
+
+@bp.route(f'{MAIN_URL}/get_data', methods=['GET'])
+def get_data():
+    params = request.args.to_dict()
+    table_name = params.get('table')
+    record_id = int(params.get('id', -1))
+    if not table_name:
+        return jsonify({"ok": False,
+                        "stack": "Table name as 'table' parameter is required",
+                        "shortError": "'table' is empty"}), 400
+    response = db.get_data(table=table_name, which_id=record_id)
+    if response['ok']:
+        return {
+            "ok": True,
+            "data": [{"title": item[1], "text": item[2], "id": item[0]} for item in response['data']],
+            "sysMsg": response['sysMsg']
+        }, 200
+    return response, 400

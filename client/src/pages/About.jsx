@@ -20,8 +20,8 @@ const About = () => {
    }, []);
 
    const fetchFaqData = async () => {
-      const response = await apiService.getRequest("/pages/get_data", {
-         type: "faq_data",
+      const response = await apiService.getRequest("/page/get_data", {
+         table: "faq",
       });
       setFaqArr(response.data || [['Не удалось загрузить контент', '']]);
    };
