@@ -11,6 +11,7 @@ import Contacts from "./pages/Contacts";
 import TermsOfUse from "./pages/TermsOfUse";
 import LicenseAgreement from "./pages/LicenseAgreement";
 import NotFound from "./pages/NotFound";
+import SignUp from "./pages/SignUp";
 
 import "./css/main.css";
 import "./assets/fonts/Gilroy/style.css";
@@ -36,6 +37,10 @@ const routes = {
         {
             path: "/terms_of_use",
             element: <TermsOfUse />,
+        },
+        {
+            path: "/sign_up",
+            element: <SignUp />
         },
         {
             path: "/*",

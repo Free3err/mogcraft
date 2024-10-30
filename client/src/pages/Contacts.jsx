@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-
-
 import apiService from "../modules/apiService";
 
 import tgLogo from "../assets/img/icons/tg_logo.svg";
@@ -18,24 +16,20 @@ const Contacts = () => {
    useEffect(() => {
       document.title = "MogCraft | Контакты";
 
-      fetchOwnerNames();
-      fetchGroupsNames();
+      fetchVkResourses();
+      fetchTelegramResourses();
    }, []);
 
-   const fetchOwnerNames = async () => {
-      const response = apiService.getRequest("/page/get_data", {
-         tablr: "owner",
-      });
-      setVkName(response.data ? response.data[0] : "Telegram");
-      setTelegramName(response.data ? response.data[1] : "Vk");
+   const fetchVkResourses = async () => {
+      const response = apiService.getRequest("/third-party/vk/get_data");
+      setVkName(response.data ? response.data.ownerName : "Vk");
+      setVkGroupName(response.data ? response.groupName : "VK");
    };
 
-   const fetchGroupsNames = async () => {
-      const response = apiService.getRequest("/page/get_data", {
-         table: "groups",
-      });
-      setTelegramGroupName(response.data ? response.data[0] : "Telegram");
-      setVkGroupName(response.data ? response.data[1] : "Vk");
+   const fetchTelegramResourses = async () => {
+      const response = apiService.getRequest("/third-party/telegram/get_data");
+      setTelegramName(response.data ? response.data[0] : "Telegram");
+      setTelegramGroupName(response.data ? response.data[1] : "Telegram");
    };
 
    return (

@@ -1,14 +1,14 @@
 from flask import Flask
 from flask_cors import CORS
 
-from routes import page
+from routes import database, user
 from config import CLIENT_API
 
 
 def setup_app():
     application = Flask(__name__)
     CORS(application, resources={r"/api/*": {"origins": CLIENT_API}})
-    for blueprint in [page.bp]:
+    for blueprint in [database.bp, user.bp]:
         application.register_blueprint(blueprint)
     return application
 

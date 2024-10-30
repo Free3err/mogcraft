@@ -15,7 +15,8 @@ CREATE TABLE faq (
 -- Создание таблицы users
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    username VARCHAR(28) NOT NULL,
-    password VARCHAR(256) NOT NULL,
-    email VARCHAR(256) NOT NULL UNIQUE
+    username VARCHAR(28) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    token VARCHAR(255) NOT NULL UNIQUE
 );

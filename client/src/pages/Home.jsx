@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 import apiService from "../modules/apiService";
 
@@ -19,7 +20,7 @@ const Home = () => {
     }, []);
 
     const fetchNewsData = async () => {
-        const response = await apiService.getRequest("/page/get_data", {
+        const response = await apiService.getRequest("/database/get_data", {
             table: "news",
         });
         setNewsData(response.data || []);
@@ -27,8 +28,8 @@ const Home = () => {
 
     const renderNews = (posts) => {
         return posts.map((post, index) => (
-            <a href={`/news/${post.id}`}>
-                <div className="news" key={index}>
+            <NavLink to={`/news/${post.id}`} key={index}>
+                <div className="news">
                     <SmoothTransform>
                         <h3>{post.title}</h3>
                     </SmoothTransform>
@@ -36,7 +37,7 @@ const Home = () => {
                         <p>{post.text}</p>
                     </SmoothTransform>
                 </div>
-            </a>
+            </NavLink>
         ));
     };
 

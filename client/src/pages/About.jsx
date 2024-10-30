@@ -12,7 +12,7 @@ import arrow from "../assets/img/icons/arrow.svg";
 import "../css/about.css";
 
 const About = () => {
-   const [faqArr, setFaqArr] = useState([]);
+   const [faqData, setFaqData] = useState([]);
 
    useEffect(() => {
       document.title = "MogCraft | О проекте";
@@ -20,20 +20,20 @@ const About = () => {
    }, []);
 
    const fetchFaqData = async () => {
-      const response = await apiService.getRequest("/page/get_data", {
+      const response = await apiService.getRequest("/database/get_data", {
          table: "faq",
       });
-      setFaqArr(response.data || [['Не удалось загрузить контент', '']]);
+      setFaqData(response.data || [{question: "Не удалось загрузить контент", ans: ""}]);
    };
 
-   const renderFAQ = (faqData) => {
+   const renderFAQ = () => {
       return faqData.map((aQ, index) => (
          <section className="faq-section" key={index}>
             <SmoothTransform>
-               <h1 className="faq-question">{aQ[0]}</h1>
+               <h1 className="faq-question">{aQ.question}</h1>
             </SmoothTransform>
             <SmoothTransform>
-               <p className="faq-answer">{aQ[1]}</p>
+               <p className="faq-answer">{aQ.ans}</p>
             </SmoothTransform>
          </section>
       ));
@@ -69,7 +69,7 @@ const About = () => {
                      </a>
                   </div>
                   <section className="answer-question-section" id="ex1">
-                     {faqArr.length ? renderFAQ(faqArr) : ""}
+                     {faqData.length ? renderFAQ() : ""}
                   </section>
                </div>
             </div>

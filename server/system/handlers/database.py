@@ -10,8 +10,9 @@ def check_request(func):
             return func(self, *args, **kwargs)
         except Exception as e:
             self.connection.rollback()
-            print("\033[0;31m[ERROR]\033[0m: Error by request.")
-            return {"ok": False, "stack": str(e), "shortError": "Invalid database request"}
+            print("\033[0;31m[ERROR]\033[0m: Invalid request.")
+            print(e)
+            return {"ok": False, "shortError": "Invalid database request"}
 
     return wrapper
 
@@ -24,7 +25,7 @@ class Database:
 
         try:
             with self.connection.cursor() as cursor:
-                with open(os.path.join(os.path.dirname(__file__), '../../db_init.sql'), 'r') as file:
+                with open(os.path.join(os.path.dirname(__file__), '../../db_init.sql'), 'r', encoding="UTF-8") as file:
                     sql_script = file.read()
                     cursor.execute(sql_script)
             self.connection.commit()
@@ -50,19 +51,28 @@ class Database:
 
     @check_request
     # Get data from database
-    def get_data(self, table, which_id):
+    def get_data(self, table, **kwargs):
         with self.connection.cursor() as cursor:
-            if which_id > 0:
-                cursor.execute(f"SELECT * FROM {table} WHERE id = %s;", (which_id,))
-                data = cursor.fetchone()
+            if kwargs:
+                conditions = [f'{condition} = %s' for condition in kwargs.keys()]
+                cursor.execute(f"SELECT * FROM {table} WHERE {' AND'.join(conditions)}", (tuple(kwargs.values()),))
             else:
                 cursor.execute(f"SELECT * FROM {table};")
-                data = cursor.fetchall()
+            data = cursor.fetchall()
         if not data:
             return {"ok": True, "data": data, "sysMsg": "No data found"}
-        return {"ok": True, "data": data, "sysMsg": "OK"}
+        return {"ok": True, "data": [data[0]] if len(data) == 1 else data, "sysMsg": "OK"}
 
-    def close(self):
-        if self.connection:
-            self.connection.close()
-            print("\033[0;34m[INFO]\033[0m: Connection to database closed.")
+    @check_request
+    # Add row to table
+    def add_row(self, table, **kwargs):
+        with self.connection.cursor() as cursor:
+            try:
+                cursor.execute(
+                    f"INSERT INTO {table} ({", ".join(tuple(kwargs.keys()))}) VALUES ({', '.join(['%s'] * len(tuple(kwargs.values())))})",
+                    tuple(kwargs.values()), )
+                self.connection.commit()
+            except psycopg2.errors.UniqueViolation as e:
+                self.connection.rollback()
+                return {"ok": False, "shortError": "Value/Values is exist", "keyError": 1}
+        return {"ok": True}
