@@ -7,15 +7,16 @@ bp = Blueprint('page_route', __name__)
 
 
 @bp.route(f'{MAIN_URL}/get_data', methods=['GET'])
+# Get data from database route
 def get_data():
     params = request.args.to_dict()
     table_name = params.get('table')
-    record_id = int(params.get('id', -1))
+    del params['table']
     if not table_name:
         return jsonify({"ok": False,
                         "stack": "Table name as 'table' parameter is required",
                         "shortError": "'table' is empty"}), 400
-    response = db.get_data(table=table_name, which_id=record_id)
+    response = db.get_data(table=table_name, **params)
     if response['ok']:
         return {
             "ok": True,
