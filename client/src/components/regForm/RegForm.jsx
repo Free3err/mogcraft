@@ -12,7 +12,7 @@ const RegistrationForm = () => {
         retryPassword: "",
     });
 
-    const regUser = (e) => {
+    const regUser = async (e) => {
         e.preventDefault();
         if (regFormData.password !== regFormData.retryPassword) {
             alert("Пароли не совпадают!");
@@ -21,7 +21,12 @@ const RegistrationForm = () => {
             alert("Длина пароля меньше 8 символов!");
             return;
         }
-        const response = auth.regUser(regFormData);
+        const response = await auth.regUser(regFormData);
+        if (response.keyError === 1) {
+            alert("Пользователь существует")
+        } else if (response.keyError === 2) {
+            alert("Почта уже используется!")
+        }
     };
 
     const handleChange = (e) => {

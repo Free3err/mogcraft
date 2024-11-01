@@ -15,9 +15,5 @@ async def sign_up():
     username = request_body['username']
     password = Hashing(request_body['password']).get_pass()
     email = request_body['email']
-    token = User(None).generate_token()
-    response = db.add_row(table="users", username=username, password=password, email=email, token=token)
-    if response['ok']:
-        return {"ok": True, "token": token}, 200
-    else:
-        return response, 409
+    response = User(username, password, email).get_user()
+    return response, 200

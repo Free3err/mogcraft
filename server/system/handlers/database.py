@@ -11,7 +11,6 @@ def check_request(func):
         except Exception as e:
             self.connection.rollback()
             print("\033[0;31m[ERROR]\033[0m: Invalid request.")
-            print(e)
             return {"ok": False, "shortError": "Invalid database request"}
 
     return wrapper
@@ -55,12 +54,12 @@ class Database:
         with self.connection.cursor() as cursor:
             if kwargs:
                 conditions = [f'{condition} = %s' for condition in kwargs.keys()]
-                cursor.execute(f"SELECT * FROM {table} WHERE {' AND'.join(conditions)}", (tuple(kwargs.values()),))
+                cursor.execute(f"SELECT * FROM {table} WHERE {' AND'.join(conditions)}", tuple(kwargs.values(), ))
             else:
                 cursor.execute(f"SELECT * FROM {table};")
             data = cursor.fetchall()
         if not data:
-            return {"ok": True, "data": data, "sysMsg": "No data found"}
+            return {"ok": True, "data": data, "sysMsg": "No data found", "keyWarn": 1}
         return {"ok": True, "data": [data[0]] if len(data) == 1 else data, "sysMsg": "OK"}
 
     @check_request
@@ -75,4 +74,18 @@ class Database:
             except psycopg2.errors.UniqueViolation as e:
                 self.connection.rollback()
                 return {"ok": False, "shortError": "Value/Values is exist", "keyError": 1}
+        return {"ok": True}
+
+    @check_request
+    # Update value
+    def update_value(self, table, id, **kwargs):
+        params = kwargs
+        with self.connection.cursor() as cursor:
+            try:
+                updated_values = ", ".join(f"{key} = {kwargs[key]!r}" for key in kwarg)
+                cursor.execute(f"UPDATE {table} SET {updated_values} WHERE id = {id}")
+                self.connection.commit()
+            except Exception as e:
+                self.connection.rollback()
+                return {"ok": False, "shortError": "Failed to execute the query", "keyError": -1}
         return {"ok": True}

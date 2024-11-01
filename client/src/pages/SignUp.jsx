@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import RegistrationForm from "../components/regForm/RegForm";
 
@@ -13,7 +13,6 @@ const SignUp = () => {
         <div className="main-wrapper">
             <div className="sign-up-content-block">
                 <div className="sign-up-desc">
-                    чозабретто
                 </div>
                 <RegistrationForm />
             </div>

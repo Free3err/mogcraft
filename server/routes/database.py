@@ -1,6 +1,3 @@
-from array import array
-from http.client import responses
-
 from flask import Blueprint, jsonify, request
 from settings.constants import API_URL, DB as db
 
